@@ -9,8 +9,23 @@
   <auth-form
     (submitted)="loginUser($event)">
     <h3>Test</h3>
+    <auth-remember (checked)="rememberUser($event)"></auth-remember>
     <button type="submit">
       Login
     </button>
   </auth-form>
+
+  <div #entry>
+    <button (click)="destroyComponent()">Destroy</button>
+    <ng-container
+      [ngTemplateOutlet]="tmpl"
+      [ngTemplateOutletContext]="ctx">
+    </ng-container>
+    <ng-template #tmpl let-name let-location='location'>
+      {{name}}: {{location}}
+    </ng-template>
+    <ng-template #tmpl2>
+      And this one?
+    </ng-template>
+  </div>
 </div>
