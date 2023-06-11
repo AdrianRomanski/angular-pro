@@ -2,19 +2,28 @@ import {
   AfterContentInit, ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
-  ComponentRef, TemplateRef,
+  ComponentRef, OnInit, TemplateRef,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {User} from "./auth-form/auth-from.interface";
-import {AuthFormComponent} from "./auth-form/auth-form.component";
+import {User} from "./directives/auth-form/auth-from.interface";
+import {AuthFormComponent} from "./directives/auth-form/auth-form.component";
+import {FilesizePipe} from "./pipes/filesize.pipe";
+
+interface File {
+  name: string,
+  size: number,
+  type: string
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [FilesizePipe]
 })
-export class AppComponent implements AfterContentInit{
+export class AppComponent implements AfterContentInit, OnInit{
+
   title = 'angular-pro';
 
   component!: ComponentRef<AuthFormComponent>;
@@ -43,13 +52,33 @@ export class AppComponent implements AfterContentInit{
     location: 'California'
   }];
 
+  files: File[]  = [];
+  mapped: File[]  = [];
+
   constructor(
     private resolver: ComponentFactoryResolver,
     private dr: ChangeDetectorRef,
+    private filesizePipe: FilesizePipe
   ) {
+    this.mapped = this.files.map(file => {
+      return {
+        ...file,
+        size: this.filesizePipe.transform(file.size, 'mb')
+      }
+    })
+
+
     setTimeout(() => {
       this.items = [...this.items, { name: 'Matt Skiba', age: 40, location: 'California' }];
     }, 2000);
+  }
+
+  ngOnInit() {
+    this.files = [
+      { name: 'logo.svg', size: 2120109, type: 'image/svg' },
+      { name: 'banner.jpg', size: 18029, type: 'image/jpg' },
+      { name: 'background.png', size: 1784562, type: 'image/png' }
+    ];
   }
 
   rememberUser(remember: boolean) {
@@ -88,4 +117,5 @@ export class AppComponent implements AfterContentInit{
   destroyComponent() {
     this.component.destroy();
   }
+
 }

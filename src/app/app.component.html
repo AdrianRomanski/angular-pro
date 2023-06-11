@@ -1,71 +1,79 @@
 <div>
 <!--  advanced components-->
-  <div *ngIf="false">
-    <auth-form
-      (submitted)="createUser($event)">
-      <h3>Create account</h3>
-      <button type="submit">
-        Join us
-      </button>
-    </auth-form>
-    <auth-form
-      (submitted)="loginUser($event)">
-      <h3>Test</h3>
-      <auth-remember (checked)="rememberUser($event)"></auth-remember>
-      <button type="submit">
-        Login
-      </button>
-    </auth-form>
+<!--  <div *ngIf="false">-->
+<!--    <auth-form-->
+<!--      (submitted)="createUser($event)">-->
+<!--      <h3>Create account</h3>-->
+<!--      <button type="submit">-->
+<!--        Join us-->
+<!--      </button>-->
+<!--    </auth-form>-->
+<!--    <auth-form-->
+<!--      (submitted)="loginUser($event)">-->
+<!--      <h3>Test</h3>-->
+<!--      <auth-remember (checked)="rememberUser($event)"></auth-remember>-->
+<!--      <button type="submit">-->
+<!--        Login-->
+<!--      </button>-->
+<!--    </auth-form>-->
 
-    <div #entry>
-      <button (click)="destroyComponent()">Destroy</button>
-      <ng-container
-        [ngTemplateOutlet]="tmpl"
-        [ngTemplateOutletContext]="ctx">
-      </ng-container>
-      <ng-template #tmpl let-name let-location='location'>
-        {{name}}: {{location}}
-      </ng-template>
-      <ng-template #tmpl2>
-        And this one?
-      </ng-template>
-    </div>
-  </div>
+<!--    <div #entry>-->
+<!--      <button (click)="destroyComponent()">Destroy</button>-->
+<!--      <ng-container-->
+<!--        [ngTemplateOutlet]="tmpl"-->
+<!--        [ngTemplateOutletContext]="ctx">-->
+<!--      </ng-container>-->
+<!--      <ng-template #tmpl let-name let-location='location'>-->
+<!--        {{name}}: {{location}}-->
+<!--      </ng-template>-->
+<!--      <ng-template #tmpl2>-->
+<!--        And this one?-->
+<!--      </ng-template>-->
+<!--    </div>-->
+<!--  </div>-->
 
 <!--  directives-->
 
-  <div>
-    <label>
-      Credit Card Number
-      <input
-        name="credit-card"
-        type="text"
-        placeholder="Enter your 16-digit card number"
-        credit-card>
-    </label>
-    <label
-      tooltip="3 digits, back of your card"
-      #myTooltip="tooltip">
-      Enter your security code
-      <span
-        (mouseover)="myTooltip.show()"
-        (mouseout)="myTooltip.hide()">
-          (?)
-        </span>
-      <input type="text">
-    </label>
-  </div>
+<!--  <div>-->
+<!--    <label>-->
+<!--      Credit Card Number-->
+<!--      <input-->
+<!--        name="credit-card"-->
+<!--        type="text"-->
+<!--        placeholder="Enter your 16-digit card number"-->
+<!--        credit-card>-->
+<!--    </label>-->
+<!--    <label-->
+<!--      tooltip="3 digits, back of your card"-->
+<!--      #myTooltip="tooltip">-->
+<!--      Enter your security code-->
+<!--      <span-->
+<!--        (mouseover)="myTooltip.show()"-->
+<!--        (mouseout)="myTooltip.hide()">-->
+<!--          (?)-->
+<!--        </span>-->
+<!--      <input type="text">-->
+<!--    </label>-->
+<!--  </div>-->
 
 <!--  stuctural-->
-  <li *myFor="let item of items; let i = index;">
-    {{ i }} Member: {{ item.name | json }}
-  </li>
+<!--  <li *myFor="let item of items; let i = index;">-->
+<!--    {{ i }} Member: {{ item.name | json }}-->
+<!--  </li>-->
 
 <!--  <ng-template myFor [myForOf]="items" let-item let-i="index">-->
 <!--    <li>-->
 <!--      {{ i }} Member: {{ item.name | json }}-->
 <!--    </li>-->
 <!--  </ng-template>-->
+
+<!--  pipes-->
+  <div>
+    <div *ngFor="let file of files">
+      <p>{{ file.name }}</p>
+      <p>{{ file.size | filesize }}</p>
+    </div>
+  </div>
 
 
 
