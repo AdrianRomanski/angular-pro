@@ -1,0 +1,4 @@
+<div *ngIf="message$ | async as message" class="mail-view">
+  <h2>{{message.from}}</h2>
+  <p>{{message.full}}</p>
+</div>

@@ -1,4 +1,4 @@
-<div>
+<!--<div>-->
 <!--  advanced components-->
 <!--  <div *ngIf="false">-->
 <!--    <auth-form-->
@@ -78,10 +78,33 @@
 
 <!--  Reactive Form-->
 
-  <app-stock-inventory></app-stock-inventory>
+<!--  <app-stock-inventory></app-stock-inventory>-->
 
 
+<!--</div>-->
 
-
-
+<div class="app">
+  <header>
+    <img src="/app/img/logo.svg" alt="logo">
+  </header>
+  <div class="app__content">
+    <nav>
+      <a
+        [routerLink]="['/mail', { outlets: {primary: 'folder/inbox', pane: null}}]"
+        routerLinkActive="active">
+        Inbox
+      </a>
+      <a
+        [routerLink]="['/mail', { outlets: {primary: 'folder/trash', pane: null}}]"
+        routerLinkActive="active">
+        Trash
+      </a>
+      <a
+        [routerLink]="['/dashboard']"
+        routerLinkActive="active">
+        Dashboard
+      </a>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>
 </div>
