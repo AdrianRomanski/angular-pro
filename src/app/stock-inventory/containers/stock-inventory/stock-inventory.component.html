@@ -13,9 +13,13 @@
     </app-stock-selector>
     <app-stock-products
       [parent]="form"
+      [map]="productMap"
       (remove)="removeStock($event)">
 
     </app-stock-products>
+    <div class="stock-inventory__price">
+      Total: {{total | currency: 'USD': true}}
+    </div>
     <div class="stock-inventory__buttons">
       <button
         type="submit"

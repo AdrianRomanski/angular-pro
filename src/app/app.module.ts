@@ -15,12 +15,12 @@ import {StockInventoryModule} from "./stock-inventory/stock-inventory.module";
     CreditCardDirective,
     TooltipDirective,
     MyForDirective,
-    FilesizePipe
+    FilesizePipe,
   ],
   imports: [
     BrowserModule,
     AuthFormModule,
-    StockInventoryModule
+    StockInventoryModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
