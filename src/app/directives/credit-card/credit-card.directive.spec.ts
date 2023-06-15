@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import {DebugElement} from "@angular/core";
-import {By} from "@angular/platform-browser";
 import {CreditCardDirective} from "./credit-card.directive";
 
 describe('CredictCardDirective', () => {

@@ -12,12 +12,13 @@ import {MailModule} from "./mail/mail.module";
 import {PreloadingStrategy, Route, RouterModule, Routes} from "@angular/router";
 import {Observable, of} from "rxjs";
 import {AuthGuard} from "./auth/auth.guard";
+import {SongsModule} from "./songs/songs.module";
+import {Store} from "./store/store";
 
 export class CustomPreload implements PreloadingStrategy {
   preload(route: Route, fn: () => Observable<any>): Observable<any> {
     return route.data && route.data['preload'] ? fn() : of(null);
   }
-
 }
 
 export const ROUTES: Routes = [
@@ -41,9 +42,10 @@ export const ROUTES: Routes = [
     AuthFormModule,
     StockInventoryModule,
     MailModule,
+    SongsModule,
     RouterModule.forRoot(ROUTES, {preloadingStrategy: CustomPreload})
   ],
-  providers: [CustomPreload, AuthGuard],
+  providers: [CustomPreload, AuthGuard, Store],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,7 +2,7 @@ import {
   AfterContentInit, ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
-  ComponentRef, OnInit, TemplateRef,
+  ComponentRef, DoCheck, NgZone, OnInit, TemplateRef,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
@@ -11,6 +11,7 @@ import {AuthFormComponent} from "./directives/auth-form/auth-form.component";
 import {FilesizePipe} from "./pipes/filesize.pipe";
 import {NavigationEnd, NavigationError, Router} from "@angular/router";
 import {filter} from "rxjs";
+import {Store} from "./store/store";
 
 interface File {
   name: string,
@@ -26,7 +27,12 @@ interface File {
 })
 export class AppComponent implements OnInit{
 
-  constructor(private router: Router) {}
+  todos$ = this.store.select<any[]>('todos');
+
+  constructor(
+    private router: Router,
+    private store: Store
+  ) {}
 
   ngOnInit() {
     this.router.events.pipe(
